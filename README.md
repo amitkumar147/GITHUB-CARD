@@ -9,7 +9,7 @@
 ---
 
 ## 🌐 Live Demos of My Projects
- | [Demo](https://yourprojectdemo.com) |
+ | [Live Demo] (https://amitkumar147.github.io/GITHUB-CARD/) 
 
 
 ---
