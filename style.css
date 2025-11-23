@@ -1,0 +1,205 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #000;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* -------- MOVING LASER BEAMS (OUTSIDE CARD) -------- */
+
+.laser-beam {
+  position: fixed;
+  width: 100%;
+  height: 3px;
+  background: cyan;
+  box-shadow: 0 0 20px cyan;
+  opacity: 0.4;
+  animation: moveBeam 4s linear infinite;
+  z-index: 0;   /* behind everything */
+}
+
+.beam1 { top: 20%; animation-duration: 6s; }
+.beam2 { top: 80%; animation-duration: 3.5s; }
+.beam3 { top: 120%; animation-duration: 9.5s; }
+
+@keyframes moveBeam {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* -------- PARTICLES -------- */
+
+#particles {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#particles::before, #particles::after {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: cyan;
+  border-radius: 50%;
+  box-shadow:
+    0 0 10px cyan,
+    0 0 20px cyan,
+    0 0 40px cyan;
+  animation: float 6s linear infinite;
+}
+
+#particles::after {
+  left: 80%;
+  animation-duration: 4s;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh) scale(0.3); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-20vh) scale(1); opacity: 0; }
+}
+
+/* -------- 3D CARD -------- */
+
+.card {
+  width: 350px;
+  padding: 30px;
+  background: rgba(10,10,10,0.5);
+  border-radius: 20px;
+  text-align: center;
+  position: relative;
+  border: 2px solid cyan;
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 0 30px cyan,
+    inset 0 0 25px rgba(0,255,255,0.4);
+
+  transform-style: preserve-3d;
+  animation: autoRotate 12s linear infinite;
+
+  overflow: hidden;     /* FIX → Scanner now stays inside card */
+  z-index: 5;
+}
+
+@keyframes autoRotate {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+/* -------- NEON BORDER (INSIDE CARD ONLY) -------- */
+
+.border-animate {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 4px;
+  background: linear-gradient(120deg, cyan, transparent, cyan);
+  animation: borderGlow 3s linear infinite;
+  z-index: 1;   /* stays inside the card */
+}
+
+@keyframes borderGlow {
+  0% { filter: blur(2px); opacity: 0.4; }
+  50% { filter: blur(8px); opacity: 1; }
+  100% { filter: blur(2px); opacity: 0.4; }
+}
+
+/* -------- FIXED LASER SCANNER (INSIDE CARD) -------- */
+
+.scanner {
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background: #7b00ff;
+  box-shadow:
+    0 0 15px #7b00ff,
+    0 0 35px #7b00ff,
+    0 0 60px #7b00ff;
+
+  animation: scan 3s linear infinite;
+  border-radius: 5px;
+
+  z-index: 3;   /* ABOVE content, INSIDE card */
+}
+
+@keyframes scan {
+  0% { top: 5%; opacity: 0; }
+  15% { opacity: 1; }
+  50% { top: 50%; opacity: 1; }
+  85% { opacity: 1; }
+  100% { top: 95%; opacity: 0; }
+}
+
+/* -------- PROFILE -------- */
+
+.profile-pic img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 3px solid cyan;
+  box-shadow: 0 0 25px cyan;
+}
+
+/* -------- TEXT -------- */
+
+h2 {
+  margin-top: 10px;
+  color: cyan;
+  text-shadow: 0 0 10px cyan;
+}
+
+.bio { color: #aaa; }
+
+/* -------- STATS -------- */
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.stats .box {
+  width: 30%;
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(0,255,255,0.05);
+  border: 1px solid cyan;
+  box-shadow: 0 0 15px cyan;
+}
+
+.stats .box h3 { color: cyan; }
+.stats .box p { color: #888; font-size: 12px; }
+
+/* -------- BUTTON -------- */
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: cyan;
+  color: black;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 0 25px cyan;
+  transition: 0.3s;
+  position: relative;
+  z-index: 10;   /* above scanner */
+}
+
+.btn:hover {
+  background: white;
+  box-shadow: 0 0 40px cyan;
+}

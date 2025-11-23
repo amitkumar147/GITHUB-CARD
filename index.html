@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ultra 3D Neon GitHub Card</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Moving Laser Lines Background -->
+<div class="laser-beam beam1"></div>
+<div class="laser-beam beam2"></div>
+
+<!-- Neon Particles -->
+<div id="particles"></div>
+
+<!-- The 3D Auto Rotating Neon Card -->
+<div class="card" id="card">
+    
+    <!-- Neon Animated Border -->
+    <span class="border-animate"></span>
+
+
+    <div class="profile-pic">
+        <img src="https://avatars.githubusercontent.com/amitkumar147">
+    </div>
+
+    <h2>@amitkumar147</h2>
+    <p class="bio">Web Developer | Designer | Blockchain Developer ❤️</p>
+
+    <div class="stats">
+        <div class="box">
+            <h3>5</h3>
+            <p>Repos</p>
+        </div>
+        <div class="box">
+            <h3>2300</h3>
+            <p>Followers</p>
+        </div>
+        <div class="box">
+            <h3>500</h3>
+            <p>Following</p>
+        </div>
+    </div>
+
+    <a class="btn" href="https://github.com/amitkumar147">Visit GitHub</a>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+<div id="particles"></div>
+<script>
+const particlesContainer = document.getElementById('particles');
+const particleCount = 30; // number of particles
+
+for(let i=0; i<particleCount; i++){
+  const p = document.createElement('div');
+  p.classList.add('particle');
+  p.style.left = Math.random()*100 + 'vw';
+  p.style.animationDuration = (3 + Math.random()*5) + 's';
+  p.style.width = p.style.height = (2 + Math.random()*5) + 'px';
+  particlesContainer.appendChild(p);
+}
+</script>
